@@ -86,9 +86,15 @@ var Comment = React.createClass({
     );
   }
 });
-
+/*
 ReactDOM.render(
   <CommentBox data={data} />,
+  document.getElementById('content')
+);
+// static comment data from JSON above
+*/
+ReactDOM.render(
+  <CommentBox url="/api/comments" />,
   document.getElementById('content')
 );
     </script>
