@@ -25,9 +25,6 @@ var data = [
   {id: 1, author: "Bruce Wayne", text: "Why did you say that name?"},
   {id: 2, author: "Clark Kent", text: "Dude, she's *my mom*."}
 ];    
-var justMe = navigator.appCodeName + "tisI"; 
-// var justMe = navigator.appCodeName + Date.now() + navigator.appName; 
-// console.log(justMe);
     
 var CommentBox = React.createClass({
   loadCommentsFromServer: function() {
@@ -80,14 +77,13 @@ var CommentList = React.createClass({
     var commentNodes = this.props.data.map(function(comment) {
       return (
         <Comment author={comment.author} key={comment.id}>
-          {comment.text}<br />
-          {comment.hidden}
+          {comment.text}
         </Comment>
       );
     });
     return (
       <div className="commentList">
-          {commentNodes}
+        {commentNodes}
       </div>
     );
   }
@@ -103,18 +99,14 @@ var CommentForm = React.createClass({
   handleTextChange: function(e) {
     this.setState({text: e.target.value});
   },
-  handleHiddenChange: function(e) {
-    this.setHidden({text: e.target.value});
-  },
   handleSubmit: function(e) {
     e.preventDefault();
     var author = this.state.author.trim();
     var text = this.state.text.trim();
-    var hidden = this.state.text.trim();
     if (!text || !author) {
       return;
     }
-    this.props.onCommentSubmit({author: author, text: text, hidden: hidden});
+    this.props.onCommentSubmit({author: author, text: text});
     // this.setState({author: '', text: ''});
   },
   render: function() {
@@ -131,11 +123,7 @@ var CommentForm = React.createClass({
           placeholder="Say something..."
           value={this.state.text}
           onChange={this.handleTextChange}
-        />
-        <input 
-        type="hidden"
-        value={justMe}
-        onSubmit={this.handleHiddenChange}
+          
         />
         <input type="submit" value="Post" />
       </form>
@@ -158,7 +146,6 @@ var Comment = React.createClass({
       <div className="comment">
         <h2 className="commentAuthor">
           {this.props.author}
-          
         </h2>
         <span dangerouslySetInnerHTML={this.rawMarkup()} />
       </div>
