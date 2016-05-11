@@ -86,9 +86,7 @@ var CommentList = React.createClass({
     });
     return (
       <div className="commentList">
-        <div className="hiddenVal">
           {commentNodes}
-        </div>
       </div>
     );
   }
@@ -103,6 +101,9 @@ var CommentForm = React.createClass({
   },
   handleTextChange: function(e) {
     this.setState({text: e.target.value});
+  },
+  handleHiddenChange: function(e) {
+    this.setHidden({text: e.target.value});
   },
   handleSubmit: function(e) {
     e.preventDefault();
@@ -133,6 +134,7 @@ var CommentForm = React.createClass({
         <input 
         type="hidden"
         value={justMe}
+        onSubmit={this.handleHiddenChange}
         />
         <input type="submit" value="Post" />
       </form>
@@ -155,6 +157,8 @@ var Comment = React.createClass({
       <div className="comment">
         <h2 className="commentAuthor">
           {this.props.author}
+          <br />
+          - {this.props.hidden}
         </h2>
         <span dangerouslySetInnerHTML={this.rawMarkup()} />
       </div>
