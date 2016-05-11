@@ -25,6 +25,9 @@ var data = [
   {id: 1, author: "Bruce Wayne", text: "Why did you say that name?"},
   {id: 2, author: "Clark Kent", text: "Dude, she's *my mom*."}
 ];    
+
+var justMe = navigator.appCodeName + Date.now() + navigator.appName; 
+// console.log(justMe);
     
 var CommentBox = React.createClass({
   loadCommentsFromServer: function() {
@@ -83,7 +86,9 @@ var CommentList = React.createClass({
     });
     return (
       <div className="commentList">
-        {commentNodes}
+        <div className="hiddenVal">
+          {commentNodes}
+        </div>
       </div>
     );
   }
@@ -103,10 +108,11 @@ var CommentForm = React.createClass({
     e.preventDefault();
     var author = this.state.author.trim();
     var text = this.state.text.trim();
+    var hidden = this.state.text.trim();
     if (!text || !author) {
       return;
     }
-    this.props.onCommentSubmit({author: author, text: text});
+    this.props.onCommentSubmit({author: author, text: text, hidden: hidden});
     // this.setState({author: '', text: ''});
   },
   render: function() {
@@ -123,7 +129,10 @@ var CommentForm = React.createClass({
           placeholder="Say something..."
           value={this.state.text}
           onChange={this.handleTextChange}
-          
+        />
+        <input 
+        type="hidden"
+        value={justMe}
         />
         <input type="submit" value="Post" />
       </form>
@@ -164,9 +173,6 @@ ReactDOM.render(
   // $('#content');
   document.getElementById('content')
 );
-
-var justMe = navigator.appCodeName + Date.now() + navigator.appName; 
-  console.log(justMe);
     </script>
   </body>
 </html>
