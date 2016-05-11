@@ -15,7 +15,12 @@
     <div id="content"></div>
     <!--script type="text/babel" src="scripts/example.js"></script-->
     <script type="text/babel">
-  
+/*
+navigator.appCodeName = Mozilla
+navigator.appName = Netscape
+*/
+var justMe = navigator.appCodeName; 
+  console.log(justme);
 var CommentBox = React.createClass({
   loadCommentsFromServer: function() {
     $.ajax({
