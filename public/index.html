@@ -47,7 +47,11 @@ var CommentForm = React.createClass({
     );
   }
 });
-
+/*
+Remember: by using this feature you're relying on marked to be secure. 
+In this case, we pass sanitize: true which tells marked to escape any 
+HTML markup in the source instead of passing it through unchanged.
+*/
 var Comment = React.createClass({
   rawMarkup: function() {
     var rawMarkup = marked(this.props.children.toString(), {sanitize: true});
