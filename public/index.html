@@ -114,7 +114,7 @@ ReactDOM.render(
 // static comment data from JSON above
 */
 ReactDOM.render(
-  <CommentBox url="/api/comments" />,
+  <CommentBox url="/api/comments" pollInterval={2000} />,
   $('#content');
 );
     </script>
