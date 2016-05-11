@@ -15,17 +15,7 @@
     <div id="content"></div>
     <!--script type="text/babel" src="scripts/example.js"></script-->
     <script type="text/babel">
-    
-// no more in-line comments, moving to JSON, IRL would be from server.
-/*
-        <Comment author="Bruce Wayne">Why did you say that name?</Comment>
-        <Comment author="Clark Kent">Dude, she's my *mom*.</Comment>
-*/
-var data = [
-  {id: 1, author: "Bruce Wayne", text: "Why did you say that name?"},
-  {id: 2, author: "Clark Kent", text: "Dude, she's *my mom*."}
-];    
-    
+  
 var CommentBox = React.createClass({
   loadCommentsFromServer: function() {
     $.ajax({
@@ -169,8 +159,8 @@ ReactDOM.render(
 */
 ReactDOM.render(
   <CommentBox url="/api/comments" pollInterval={2000} />,
-  // $('#content');
-  document.getElementById('content')
+  $('#content');
+  // document.getElementById('content')
 );
     </script>
   </body>
